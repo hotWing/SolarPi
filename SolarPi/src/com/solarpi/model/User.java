@@ -1,10 +1,11 @@
 package com.solarpi.model;
 
+import java.beans.Transient;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 
 public class User {
 	
@@ -14,12 +15,28 @@ public class User {
 	 @NotNull
     @Size(min=5, max=25)
 	private String password;
-//	private String country;
+	 
+	 @NotNull
+	private String confirmPassword;
+	private String country;
+	private String city;
 //	private int isActived;
 //	private Date registerTimne;
 //	private Date activeTime;
 //	private String validateCode;
 	
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -32,12 +49,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-//	public String getCountry() {
-//		return country;
-//	}
-//	public void setCountry(String country) {
-//		this.country = country;
-//	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
 //	public int getIsActived() {
 //		return isActived;
 //	}

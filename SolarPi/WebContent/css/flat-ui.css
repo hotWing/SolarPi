@@ -3340,7 +3340,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   position: relative;
   display: inline-block;
   vertical-align: top;
-  min-width: 220px;
+/*   min-width: 220px; */
   width: auto;
 }
 .form-group .select {

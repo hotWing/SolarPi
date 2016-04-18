@@ -10,8 +10,8 @@
    	<base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Loading Flat UI -->
     <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 	<link rel="shortcut icon" href="img/favicon.ico">
 	
     <script src="js/jquery.min.js"></script>
