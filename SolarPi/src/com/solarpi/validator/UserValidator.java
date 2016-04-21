@@ -2,7 +2,6 @@ package com.solarpi.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 
 import com.solarpi.model.User;
 

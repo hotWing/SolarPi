@@ -1,29 +1,33 @@
 package com.solarpi.model;
 
-import java.beans.Transient;
+import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class User {
 	
+	@NotEmpty
 	@Email
+	@Size(max=100)
 	private String email;
 	
-	 @NotNull
-    @Size(min=5, max=25)
+    @Size(min=5, max=20)
 	private String password;
 	 
-	 @NotNull
+	@NotEmpty
 	private String confirmPassword;
+	
 	private String country;
 	private String city;
-//	private int isActived;
-//	private Date registerTimne;
-//	private Date activeTime;
-//	private String validateCode;
+	
+	private int isActived;
+	private Date registerTime;
+	private Date activeTime;
+	private String validateCode;
 	
 	public String getCity() {
 		return city;
@@ -55,28 +59,28 @@ public class User {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-//	public int getIsActived() {
-//		return isActived;
-//	}
-//	public void setIsActived(int isActived) {
-//		this.isActived = isActived;
-//	}
-//	public Date getRegisterTimne() {
-//		return registerTimne;
-//	}
-//	public void setRegisterTimne(Date registerTimne) {
-//		this.registerTimne = registerTimne;
-//	}
-//	public Date getActiveTime() {
-//		return activeTime;
-//	}
-//	public void setActiveTime(Date activeTime) {
-//		this.activeTime = activeTime;
-//	}
-//	public String getValidateCode() {
-//		return validateCode;
-//	}
-//	public void setValidateCode(String validateCode) {
-//		this.validateCode = validateCode;
-//	}
+	public int getIsActived() {
+		return isActived;
+	}
+	public void setIsActived(int isActived) {
+		this.isActived = isActived;
+	}
+	public Date getRegisterTime() {
+		return registerTime;
+	}
+	public void setRegisterTime(Date registerTimne) {
+		this.registerTime = registerTimne;
+	}
+	public Date getActiveTime() {
+		return activeTime;
+	}
+	public void setActiveTime(Date activeTime) {
+		this.activeTime = activeTime;
+	}
+	public String getValidateCode() {
+		return validateCode;
+	}
+	public void setValidateCode(String validateCode) {
+		this.validateCode = validateCode;
+	}
 }

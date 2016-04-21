@@ -12,6 +12,11 @@ public class MainController {
 	@RequestMapping("/index.html")
 	public String index(Model model){
 		model.addAttribute("user", new User()); 
-		return "register";
+		return "index";
+	}
+	
+	@RequestMapping("/profile")
+	public String profile(){
+		return "profile";
 	}
 }

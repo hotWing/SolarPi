@@ -11,34 +11,37 @@
   <body class="green-bg">
     <div class="container">
 <%-- 		<jsp:include page="i18n.jsp"/> --%>
-		
+
 		<div id="register"  class="row">
-  			<div class="col-sm-3 text-center">
+  			<div class="col-sm-3 text-center col-sm-offset-1">
   				<img id="reg-img" src="img/user.png">
   				<h3><spring:message code="register.title"/></h3>
   			</div>
-  			<div class="col-sm-8">
+  			<div class="col-sm-6">
   				<div id="reg-form">
   					<form:form method="POST" commandName="user" action="user/signup">
 			 			<div class="form-group">
 			             	<label><spring:message code="register.email"/></label>
 			    	 		<spring:message code="register.email" var="email"/>
 			             	<form:input path="email"  class="form-control" placeholder="${email}"/>
-							<form:errors path="email" />
+							<form:errors class="error-msg" path="email" />
+							<c:if test="${not empty emailDuplicated}">
+			             		<label class="error-msg"><spring:message code="validation.emailDuplicated"/></label>
+		             		</c:if>
 			           	</div>
 						
 			 			<div class="form-group">
 			             	<label><spring:message code="register.password"/></label>
 			    	 		<spring:message code="register.password" var="password"/>
-			             	<form:input path="password"  class="form-control" placeholder="${password}"/>
-							<form:errors path="password"/>
+			             	<form:input path="password" type="password" class="form-control" placeholder="${password}"/>
+							<form:errors path="password" class="error-msg"/>
 			           	</div>
 			           	
 			           	<div class="form-group">
 			             	<label><spring:message code="register.confirmPassword"/></label>
 			    	 		<spring:message code="register.confirmPassword" var="confirmPassword"/>
-			             	<form:input path="confirmPassword"  class="form-control" placeholder="${confirmPassword}"/>
-							<form:errors path="confirmPassword"/>
+			             	<form:input path="confirmPassword" type="password" class="form-control" placeholder="${confirmPassword}"/>
+							<form:errors path="confirmPassword" class="error-msg"/>
 			           	</div>
 			           	<div class="row">
 				           	<div class="form-group col-sm-6">
@@ -60,15 +63,21 @@
 				           	</div>
 			           	</div>
 			           	
-			           	<button type="submit" class="btn btn-primary"><spring:message code="register.submit"/></button>
+			           	<button type="submit" class="btn btn-primary" style="width:100%"><spring:message code="register.submit"/></button>
 					</form:form>
   				</div>
-				
   			</div>
 		</div>
   	</div>
   	
     <script src="js/register.js"></script>
-  	    
+    <script type="text/javascript">
+    	var country = "${countrySelection}"
+    	if (country)
+   		{
+			$("#select-country").select2().select2('val', country);
+			$("#select-city").select2().select2('val', "${user.city}");
+   		}
+    </script>
   </body>
 </html>

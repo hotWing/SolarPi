@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	$('#select-country').on('change', function() {
 		  var countryNameWithCode =  $(this).val();
 		  var countryCode = countryNameWithCode.split(":")[0];
