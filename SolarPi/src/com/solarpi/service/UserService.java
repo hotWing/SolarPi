@@ -6,5 +6,6 @@ public interface UserService {
 	public void addUser(User user);
 	public void sendActivationEmail(User user);
 	public String activeUser(String email, String validateCode);
+	public Boolean signin(User user);
 	
 }

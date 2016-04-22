@@ -3,13 +3,14 @@ package com.solarpi.controller;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,8 @@ import com.solarpi.service.CityService;
 import com.solarpi.service.CountryService;
 import com.solarpi.service.UserService;
 import com.solarpi.util.MD5Util;
+import com.solarpi.validator.First;
+import com.solarpi.validator.Second;
 import com.solarpi.validator.UserValidator;
 
 @Controller
@@ -43,8 +46,39 @@ public class UserController {
 		return "register";
 	}
 	
+	@RequestMapping("/signin")
+	public String signin(@Validated ({First.class}) User user, HttpServletRequest request, Errors errors, Model model) {
+		if(errors.hasErrors()){
+			model.addAttribute("user",user);
+			return "signin";
+		}
+		
+		Boolean isSignedin = userService.signin(user);
+		if(!isSignedin) {
+			model.addAttribute("errormsg","signin.errormsg");
+			return "signin";
+		}
+	
+		request.getSession().setAttribute("email", user.getEmail());
+		return "redirect:../index.htm";
+	}
+	
+	@RequestMapping("/signout")
+	public String signout(HttpServletRequest request,String page){
+		request.getSession().removeAttribute("email");
+		
+		return "redirect:../" + page;
+		
+	}
+	
+	@RequestMapping("/signinform")
+	public String signinform(Model model){
+		model.addAttribute("user", new User()); 
+		return "signin";
+	}
+	
 	@RequestMapping("/signup")
-	public String signup(@Valid User user, Errors errors, Model model){
+	public String signup(@Validated ({Second.class}) User user, Errors errors, Model model){
 		String countryNameWithCode = user.getCountry();
 		String[] countryNameWithCodeArray = countryNameWithCode.split(":");
 		String countryName = countryNameWithCodeArray[1];

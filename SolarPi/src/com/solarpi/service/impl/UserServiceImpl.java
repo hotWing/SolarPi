@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import com.solarpi.dao.UserDao;
 import com.solarpi.model.User;
 import com.solarpi.service.UserService;
+import com.solarpi.util.MD5Util;
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -126,5 +127,18 @@ public class UserServiceImpl implements UserService {
 		}
 		else 
 			return "activation.error.invalidEmail";//∏√” œ‰Œ¥◊¢≤·£°
+	}
+
+	@Override
+	public Boolean signin(User user) {
+		User userDB = userDao.getUser(user.getEmail());
+		if (userDB == null)
+			return false;
+
+		String passwordInput = MD5Util.toMD5(user.getPassword());
+		if(!userDB.getPassword().equals(passwordInput))
+			return false;
+		
+		return true;
 	}
 }

@@ -2,23 +2,26 @@ package com.solarpi.model;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.solarpi.validator.First;
+import com.solarpi.validator.Second;
+
 public class User {
 	
-	@NotEmpty
-	@Email
-	@Size(max=100)
+	@NotEmpty(groups = { First.class, Second.class })
+	@Email(groups = { First.class, Second.class })
+	@Size(max=100,groups = {Second.class })
 	private String email;
 	
-    @Size(min=5, max=20)
+	@NotEmpty(groups = {First.class})
+    @Size(min=5, max=20,groups = {Second.class })
 	private String password;
 	 
-	@NotEmpty
+	@NotEmpty(groups = {Second.class })
 	private String confirmPassword;
 	
 	private String country;

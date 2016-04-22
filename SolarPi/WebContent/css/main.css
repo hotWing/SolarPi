@@ -9,6 +9,10 @@
 	border-radius:0px;
 }
 	
+#br {
+	display:none;
+}
+
 #reg-img{
 	width:150px;
 }
@@ -59,6 +63,10 @@
 
 
 @media (min-width: 768px) {
+	#br {
+		display:block;
+	}
+
 	  .navbar-collapse {
 	    height: auto;
 	    border-top: 0;
@@ -85,7 +93,9 @@
 	}	
 	
 	.navbar-brand{
-		height:200px;
+		width:100%;
+		text-align:center;
+		height:100px;
 	}
 	
 	.navbar-nav,
@@ -95,9 +105,23 @@
 	.navbar-header
 	{float:none !important;}
 	
+	.navbar-nav > li
+	{
+		text-align:center;
+	}
 	.navbar-right .dropdown-menu {left:0;right:auto;}
 	.navbar-collapse .navbar-nav.navbar-right:last-child {
 	    margin-right: 0;
+	}
+	
+	.col-offset-300 {
+		padding-left:315px;
+	}
+	
+	.col-fixed-300 {
+	    width:300px;
+	    position:fixed;
+	    height:100%;
 	}
 }
 

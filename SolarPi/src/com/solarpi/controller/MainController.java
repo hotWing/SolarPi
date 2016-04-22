@@ -9,7 +9,7 @@ import com.solarpi.model.User;
 @Controller
 public class MainController {
 	
-	@RequestMapping("/index.html")
+	@RequestMapping("/index.htm")
 	public String index(Model model){
 		model.addAttribute("user", new User()); 
 		return "index";
