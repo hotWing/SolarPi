@@ -5,5 +5,5 @@ import java.util.List;
 import com.solarpi.model.City;
 
 public interface CityService {
-	public List<City> getCities(String code);
+	public List<City> getCities(String country);
 }

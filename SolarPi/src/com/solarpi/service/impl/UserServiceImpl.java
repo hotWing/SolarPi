@@ -141,4 +141,18 @@ public class UserServiceImpl implements UserService {
 		
 		return true;
 	}
+
+	@Override
+	public User getUserInfo(String email) {
+		User user = userDao.getUser(email);
+		return user;
+	}
+
+	@Override
+	public void edit(String email, String country, String city) {
+		User user = userDao.getUser(email);
+		user.setCountry(country);
+		user.setCity(city);
+		userDao.update(user);
+	}
 }

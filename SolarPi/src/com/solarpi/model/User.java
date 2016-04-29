@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.solarpi.validator.First;
 import com.solarpi.validator.Second;
+import com.solarpi.validator.Third;
 
 public class User {
 	
@@ -18,10 +19,10 @@ public class User {
 	private String email;
 	
 	@NotEmpty(groups = {First.class})
-    @Size(min=5, max=20,groups = {Second.class })
+    @Size(min=5, max=20,groups = {Second.class})
 	private String password;
 	 
-	@NotEmpty(groups = {Second.class })
+	@NotEmpty(groups = {Second.class})
 	private String confirmPassword;
 	
 	private String country;

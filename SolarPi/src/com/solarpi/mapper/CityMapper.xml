@@ -4,9 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solarpi.mapper.CityMapper">
   	<select id="getCities" resultType="com.solarpi.model.City">
-	  	SELECT * FROM CITY
-	  	<if test="code != null and code != ''">  
-	   	  	WHERE CountryCode = #{code}
+	  	SELECT * FROM city LEFT JOIN country ON city.CountryCode = country.Code
+	  	<if test="name != null and name != ''">  
+	   	  	WHERE country.name = #{name}
 	    </if>
+	    ORDER BY city.name
   	</select>
 </mapper>

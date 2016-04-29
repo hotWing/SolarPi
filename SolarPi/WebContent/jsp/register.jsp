@@ -1,7 +1,7 @@
 <%@ page language="java"  import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +48,7 @@
 				             	<label><spring:message code="register.country"/></label>
 				             	<form:select id="select-country" data-toggle="select" class="form-control select select-default mrs mbm" path="country">
 					         		<c:forEach items="${countries}" var="country" >  
-										<option value="${country.code}:${country.name}">${country.name}</option>
+										<option value="${country.name}">${country.name}</option>
 									</c:forEach> 
 					       		</form:select>
 					       	</div>	 

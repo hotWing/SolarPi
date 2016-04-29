@@ -15,8 +15,10 @@
 		  			<label>${sessionScope.email}</label>
 		  			|
 		  			<a href="user/signout?page=index.htm">退出</a>
+		  			
+			  				
 		  		</span>
-		     		
+		     		<a href="user/profile">个人设置</a>
 		  	</c:when>
 		  	<c:otherwise>
 			    <span>
@@ -26,6 +28,8 @@
 			  	</span>
 		  	</c:otherwise>
 		</c:choose>
+		
+		
 
 
 	 

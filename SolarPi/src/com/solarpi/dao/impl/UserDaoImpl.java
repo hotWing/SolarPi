@@ -32,4 +32,6 @@ public class UserDaoImpl implements UserDao {
 	public void update(User user) {
 		sqlSession.update("com.solarpi.mapper.UserMapper.update",user);
 	}
+
+
 }

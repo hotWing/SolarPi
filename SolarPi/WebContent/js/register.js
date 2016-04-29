@@ -1,11 +1,10 @@
 $(document).ready(function(){
 
 	$('#select-country').on('change', function() {
-		  var countryNameWithCode =  $(this).val();
-		  var countryCode = countryNameWithCode.split(":")[0];
+		  var countryName =  $(this).val();
 		  
 		  $.ajax({
-		        url: "user/getCities/" + countryCode,
+		        url: "user/getCities/" + countryName,
 		       
 		        success: function(cities,textStatus){
 		        			var htmlArray = [];

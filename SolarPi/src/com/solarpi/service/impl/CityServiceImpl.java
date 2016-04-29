@@ -16,7 +16,7 @@ public class CityServiceImpl implements CityService {
 	private CityDao cityDao;
 	
 	@Override
-	public List<City> getCities(String code) {
-		return cityDao.getCities(code);
+	public List<City> getCities(String country) {
+		return cityDao.getCities(country);
 	}
 }

@@ -21,8 +21,10 @@ import com.solarpi.service.CityService;
 import com.solarpi.service.CountryService;
 import com.solarpi.service.UserService;
 import com.solarpi.util.MD5Util;
+import com.solarpi.util.StringUtil;
 import com.solarpi.validator.First;
 import com.solarpi.validator.Second;
+import com.solarpi.validator.Third;
 import com.solarpi.validator.UserValidator;
 
 @Controller
@@ -37,12 +39,33 @@ public class UserController {
 	private CityService cityService;
 	@Autowired
 	private UserService userService;
+	
+	private final static String SIGNIN_PAGE = "redirect:../index.htm";
 	  
+	@RequestMapping("/profile")
+	public String profile(HttpServletRequest request, Model model){
+		String email = (String) request.getSession().getAttribute("email");
+		
+		//»¹Î´µÇÂ¼
+		if(StringUtil.isNullOrEmpty(email))
+			return SIGNIN_PAGE;
+		
+		User user = userService.getUserInfo(email);
+		user.setPassword("");
+		user.setConfirmPassword("");
+		model.addAttribute("user",user);
+		model.addAttribute("countries", countryService.getCountries());
+		model.addAttribute("cities", cityService.getCities(user.getCountry()));
+		model.addAttribute("countrySelection",user.getCountry());
+		
+		return "profile-settings";
+	}
+	
 	@RequestMapping("/regform")
 	public String regform(Model model){
 		model.addAttribute("user", new User()); 
 		model.addAttribute("countries", countryService.getCountries());
-		model.addAttribute("cities", cityService.getCities("ABW"));
+		model.addAttribute("cities", cityService.getCities("Aruba"));
 		return "register";
 	}
 	
@@ -61,7 +84,42 @@ public class UserController {
 	
 		request.getSession().setAttribute("email", user.getEmail());
 		return "redirect:../index.htm";
+
 	}
+	
+//	@RequestMapping("/editPassword")
+//	public String editPassword(@Validated ({Third.class})User user, HttpServletRequest request,Model model) {
+//		String email = (String) request.getSession().getAttribute("email");
+//		
+//		if(StringUtil.isNullOrEmpty(email))
+//			return SIGNIN_PAGE;
+//		
+//		//userValidator.validate(user, errors);
+//		
+////		if (errors.hasErrors()) {
+////			
+////			
+////			return "redirect:profile";
+////        }
+//		
+//		return "redirect:profile";
+		
+		
+//	}
+	
+	@RequestMapping("/edit") 
+	public String edit(User user, HttpServletRequest request, Model model) {
+		String email = (String) request.getSession().getAttribute("email");
+		
+		if(StringUtil.isNullOrEmpty(email))
+			return SIGNIN_PAGE;
+		
+		userService.edit(email, user.getCountry(), user.getCity());
+		model.addAttribute("msg","profile.saveSuccess");
+		return "redirect:profile";
+	}
+		
+	
 	
 	@RequestMapping("/signout")
 	public String signout(HttpServletRequest request,String page){
@@ -79,10 +137,8 @@ public class UserController {
 	
 	@RequestMapping("/signup")
 	public String signup(@Validated ({Second.class}) User user, Errors errors, Model model){
-		String countryNameWithCode = user.getCountry();
-		String[] countryNameWithCodeArray = countryNameWithCode.split(":");
-		String countryName = countryNameWithCodeArray[1];
-		String countryCode = countryNameWithCodeArray[0];
+		String countryName = user.getCountry();
+		
 		user.setCountry(countryName);
 		user.setIsActived(0);
 		
@@ -97,12 +153,12 @@ public class UserController {
 		userValidator.validate(user, errors);
 		
 		if (errors.hasErrors()) {
-			model.addAttribute("countrySelection",countryNameWithCode);
+			model.addAttribute("countrySelection",countryName);
 			user.setPassword("");
 			user.setConfirmPassword("");
 			model.addAttribute("user", user); 
 			model.addAttribute("countries", countryService.getCountries());
-			model.addAttribute("cities", cityService.getCities(countryCode));
+			model.addAttribute("cities", cityService.getCities(countryName));
 			
             return "register";
         }
@@ -113,10 +169,12 @@ public class UserController {
 			userService.addUser(user);
 		}catch (DuplicateKeyException e) {
 			model.addAttribute("emailDuplicated","emailDuplicated");
-			model.addAttribute("countrySelection",countryNameWithCode);
+			model.addAttribute("countrySelection",countryName);
+			user.setPassword("");
+			user.setConfirmPassword("");
 			model.addAttribute("user", user); 
 			model.addAttribute("countries", countryService.getCountries());
-			model.addAttribute("cities", cityService.getCities(countryCode));
+			model.addAttribute("cities", cityService.getCities(countryName));
 			return "register";
 		}
 		
@@ -125,11 +183,11 @@ public class UserController {
 		return "register-info";
 	}
 	
-	@RequestMapping("/getCities/{code}")
+	@RequestMapping("/getCities/{country}")
 	@ResponseBody
-	public List<City> getCities(@PathVariable String code)
+	public List<City> getCities(@PathVariable String country)
 	{
-		return cityService.getCities(code);
+		return cityService.getCities(country);
 	}
 	
 	@RequestMapping("/active")

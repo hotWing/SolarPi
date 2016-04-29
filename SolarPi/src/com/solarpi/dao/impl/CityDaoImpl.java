@@ -18,10 +18,10 @@ public class CityDaoImpl implements CityDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<City> getCities(String code) {
+	public List<City> getCities(String country) {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("code", code);
+		params.put("name", country);
 		
 		List<City> cities = sqlSession.selectList("com.solarpi.mapper.CityMapper.getCities",params);
 		return cities;
