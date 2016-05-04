@@ -72,12 +72,19 @@
   	
     <script src="js/register.js"></script>
     <script type="text/javascript">
-    	var country = "${countrySelection}"
-    	if (country)
-   		{
-			$("#select-country").select2().select2('val', country);
+    
+	   	$(document).ready(function() {
+	   		//用于解决手机上，下拉后弹出虚拟键盘
+	   		$('.select2-container').each(function () {
+	   			$(this).find('.select2-search, .select2-focusser').hide();
+	   			});
+	   	});
+   	
+	   	var countySelected = "${user.country}";
+	   	if (countySelected) {
+			$("#select-country").select2().select2('val', "${user.country}");
 			$("#select-city").select2().select2('val', "${user.city}");
-   		}
+	   	}
     </script>
   </body>
 </html>

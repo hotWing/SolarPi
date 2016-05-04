@@ -130,7 +130,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean signin(User user) {
+	public Boolean validate(User user) {
 		User userDB = userDao.getUser(user.getEmail());
 		if (userDB == null)
 			return false;

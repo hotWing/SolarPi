@@ -51,15 +51,24 @@ public class UserController {
 			return SIGNIN_PAGE;
 		
 		User user = userService.getUserInfo(email);
-		user.setPassword("");
-		user.setConfirmPassword("");
-		model.addAttribute("user",user);
-		model.addAttribute("countries", countryService.getCountries());
-		model.addAttribute("cities", cityService.getCities(user.getCountry()));
-		model.addAttribute("countrySelection",user.getCountry());
-		
+		setUserInfoForJsp(user, model, user.getCountry());
+		model.addAttribute("activeTab","#tab-edit");
 		return "profile-settings";
 	}
+	
+	@RequestMapping("/passwordForm")
+	public String passwordForm(HttpServletRequest request, Model model){
+		String email = (String) request.getSession().getAttribute("email");
+		
+		//»¹Î´µÇÂ¼
+		if(StringUtil.isNullOrEmpty(email))
+			return SIGNIN_PAGE;
+		
+		model.addAttribute("user",new User());
+		model.addAttribute("activeTab","#tab-editPassword");
+		return "profile-password";
+	}
+	
 	
 	@RequestMapping("/regform")
 	public String regform(Model model){
@@ -70,13 +79,13 @@ public class UserController {
 	}
 	
 	@RequestMapping("/signin")
-	public String signin(@Validated ({First.class}) User user, HttpServletRequest request, Errors errors, Model model) {
+	public String signin(@Validated ({First.class}) User user,  Errors errors, HttpServletRequest request, Model model) {
 		if(errors.hasErrors()){
 			model.addAttribute("user",user);
 			return "signin";
 		}
 		
-		Boolean isSignedin = userService.signin(user);
+		Boolean isSignedin = userService.validate(user);
 		if(!isSignedin) {
 			model.addAttribute("errormsg","signin.errormsg");
 			return "signin";
@@ -87,25 +96,37 @@ public class UserController {
 
 	}
 	
-//	@RequestMapping("/editPassword")
-//	public String editPassword(@Validated ({Third.class})User user, HttpServletRequest request,Model model) {
-//		String email = (String) request.getSession().getAttribute("email");
-//		
-//		if(StringUtil.isNullOrEmpty(email))
-//			return SIGNIN_PAGE;
-//		
-//		//userValidator.validate(user, errors);
-//		
-////		if (errors.hasErrors()) {
-////			
-////			
-////			return "redirect:profile";
-////        }
-//		
-//		return "redirect:profile";
+	@RequestMapping("/editPassword")
+	public String editPassword(@Validated ({Third.class})User user, Errors errors,String oldPassword, HttpServletRequest request,Model model) {
+		String email = (String) request.getSession().getAttribute("email");
 		
+		if(StringUtil.isNullOrEmpty(email))
+			return SIGNIN_PAGE;
 		
-//	}
+		//¾ÉÃÜÂëÎª¿Õ
+		if (StringUtil.isNullOrEmpty(oldPassword)) {
+			model.addAttribute("invalidPassword","profile.oldPassword.NotNull");
+			return "profile-password";
+		}
+		
+		//¾ÉÃÜÂë´íÎó
+		User userTemp = userService.getUserInfo(email);
+		String passwordInput = MD5Util.toMD5(oldPassword);
+		if(!userTemp.getPassword().equals(passwordInput)){
+			model.addAttribute("invalidPassword","profile.oldPassword.invalidPassword");
+			return "profile-password";
+		}
+			
+		userValidator.validate(user, errors);
+		
+		if (errors.hasErrors()) {
+			model.addAttribute("user", user);
+        }
+		else {
+			model.addAttribute("msg","profile.saveSuccess");
+		}
+		return "profile-password";
+	}
 	
 	@RequestMapping("/edit") 
 	public String edit(User user, HttpServletRequest request, Model model) {
@@ -153,13 +174,7 @@ public class UserController {
 		userValidator.validate(user, errors);
 		
 		if (errors.hasErrors()) {
-			model.addAttribute("countrySelection",countryName);
-			user.setPassword("");
-			user.setConfirmPassword("");
-			model.addAttribute("user", user); 
-			model.addAttribute("countries", countryService.getCountries());
-			model.addAttribute("cities", cityService.getCities(countryName));
-			
+			setUserInfoForJsp(user, model, countryName);
             return "register";
         }
 		
@@ -169,12 +184,7 @@ public class UserController {
 			userService.addUser(user);
 		}catch (DuplicateKeyException e) {
 			model.addAttribute("emailDuplicated","emailDuplicated");
-			model.addAttribute("countrySelection",countryName);
-			user.setPassword("");
-			user.setConfirmPassword("");
-			model.addAttribute("user", user); 
-			model.addAttribute("countries", countryService.getCountries());
-			model.addAttribute("cities", cityService.getCities(countryName));
+			setUserInfoForJsp(user, model, countryName);
 			return "register";
 		}
 		
@@ -195,5 +205,13 @@ public class UserController {
 		String msg = userService.activeUser(email, validateCode);
 		model.addAttribute("msg",msg);
 		return "register-info";
+	}
+	
+	private void setUserInfoForJsp(User user, Model model,String countryName) {
+		user.setPassword("");
+		user.setConfirmPassword("");
+		model.addAttribute("user", user); 
+		model.addAttribute("countries", countryService.getCountries());
+		model.addAttribute("cities", cityService.getCities(countryName));
 	}
 }

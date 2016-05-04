@@ -19,10 +19,10 @@ public class User {
 	private String email;
 	
 	@NotEmpty(groups = {First.class})
-    @Size(min=5, max=20,groups = {Second.class})
+    @Size(min=5, max=20,groups = {Second.class, Third.class})
 	private String password;
 	 
-	@NotEmpty(groups = {Second.class})
+	@NotEmpty(groups = {Second.class, Third.class})
 	private String confirmPassword;
 	
 	private String country;
