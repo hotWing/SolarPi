@@ -155,4 +155,9 @@ public class UserServiceImpl implements UserService {
 		user.setCity(city);
 		userDao.update(user);
 	}
+
+	@Override
+	public void updateUser(User user) {
+		userDao.update(user);
+	}
 }

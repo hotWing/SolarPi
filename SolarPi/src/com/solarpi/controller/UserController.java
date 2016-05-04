@@ -123,6 +123,8 @@ public class UserController {
 			model.addAttribute("user", user);
         }
 		else {
+			userTemp.setPassword(MD5Util.toMD5(user.getPassword()));
+			userService.updateUser(userTemp);
 			model.addAttribute("msg","profile.saveSuccess");
 		}
 		return "profile-password";
@@ -174,7 +176,9 @@ public class UserController {
 		userValidator.validate(user, errors);
 		
 		if (errors.hasErrors()) {
-			setUserInfoForJsp(user, model, countryName);
+			model.addAttribute("user", user); 
+			model.addAttribute("countries", countryService.getCountries());
+			model.addAttribute("cities", cityService.getCities(countryName));
             return "register";
         }
 		

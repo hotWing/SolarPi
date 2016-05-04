@@ -4,6 +4,7 @@ import com.solarpi.model.User;
 
 public interface UserService {
 	public void addUser(User user);
+	public void updateUser(User user);
 	public void sendActivationEmail(User user);
 	public String activeUser(String email, String validateCode);
 	public Boolean validate(User user);

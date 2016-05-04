@@ -20,7 +20,7 @@
 					<label id="reg-result"><spring:message code="${msg}"/></label>
 					<br>
 					<div class="text-center">
-						<a href="index.html" class="btn btn-primary"><spring:message code="toIndex"/></a>
+						<a href="index.htm" class="btn btn-primary"><spring:message code="toIndex"/></a>
 					</div>
   				</div>
   			</div>
