@@ -10,5 +10,6 @@ public interface UserService {
 	public Boolean validate(User user);
 	public User getUserInfo(String email);
 	public void edit(String email, String country, String city);
+	public String reSendEmail(String email);
 	
 }

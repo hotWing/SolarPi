@@ -42,6 +42,12 @@ public class UserController {
 	
 	private final static String SIGNIN_PAGE = "redirect:../index.htm";
 	  
+	@RequestMapping("/reSendEmail")
+	@ResponseBody
+	public String reSendEmail(String email) {
+		return userService.reSendEmail(email);
+	}
+	
 	@RequestMapping("/profile")
 	public String profile(HttpServletRequest request, Model model){
 		String email = (String) request.getSession().getAttribute("email");

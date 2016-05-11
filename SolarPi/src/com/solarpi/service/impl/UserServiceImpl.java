@@ -1,5 +1,6 @@
 package com.solarpi.service.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
@@ -159,5 +160,33 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(User user) {
 		userDao.update(user);
+	}
+
+	@Override
+	public String reSendEmail(String email) {
+		try {
+			User user = userDao.getUser(email);
+			
+			if(user.getIsActived() == 1)//已经激活过了
+				return "actived";
+			
+			Date currentTime = new Date();
+			if(currentTime.before(user.getActiveTime()))//上次发送的激活码还没过期
+				return "sent";
+			
+			Calendar cl = Calendar.getInstance();  
+			
+			user.setValidateCode(MD5Util.toMD5(user.getEmail()+cl.getTime().toString()));
+			
+	        cl.add(Calendar.DATE , 2); 
+			user.setActiveTime(cl.getTime());
+			
+			userDao.update(user);
+			sendActivationEmail(user);
+			return "success";
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
 	}
 }

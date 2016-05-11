@@ -10,6 +10,11 @@
 	margin-bottom:0px;
 }
 
+.navbar a
+{
+	cursor:pointer;
+}
+
 #reg-img{
 	width:150px;
 }
@@ -54,6 +59,26 @@
 	padding:10px 50px;
 }
 
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+	
+	
 @media (min-width: 960px) {
 	
 	#account-info {
@@ -91,10 +116,20 @@
 	
 	.navbar
 	{
+		position: relative;
 		height:100%;
 		margin-right: 0;
 		margin-left: 0;
 	}	
+	
+	.navbar-right {
+		position: absolute;
+		margin-left: auto;
+		margin-right: auto;
+		left: 0;
+		right: 0;
+		bottom:50px;
+	}
 	
 	.navbar-nav,
 	.navbar-nav > li,

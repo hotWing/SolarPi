@@ -35,7 +35,6 @@
 								<option value="${country.name}">${country.name}</option>
 							</c:forEach> 
 			       		</form:select>
-        
 			       	</div>	 
 		       		<div class="form-group col-sm-6">
 			       		<label><spring:message code="register.city"/></label>
