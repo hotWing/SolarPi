@@ -40,7 +40,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	private final static String SIGNIN_PAGE = "redirect:../index.htm";
+	public final static String SIGNIN_PAGE = "redirect:../index.htm";
 	  
 	@RequestMapping("/reSendEmail")
 	@ResponseBody
@@ -74,7 +74,6 @@ public class UserController {
 		model.addAttribute("activeTab","#tab-editPassword");
 		return "profile-password";
 	}
-	
 	
 	@RequestMapping("/regform")
 	public String regform(Model model){

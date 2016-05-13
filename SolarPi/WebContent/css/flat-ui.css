@@ -2542,7 +2542,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 @media (max-width: 767px) {
   .pagination {
     height: 41px;
-    padding: 0 55px 0 52px;
+/*     padding: 0 55px 0 52px; */
     overflow: auto;
     white-space: nowrap;
     border-radius: 6px;
@@ -2550,7 +2550,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 }
 .pagination li {
   display: inline-block;
-  margin-right: -2px;
+  margin-right: 0px;
   vertical-align: middle;
   word-spacing: normal;
 }

@@ -18,7 +18,7 @@
 	    <ul class="nav navbar-nav">
 	      <li id = "tab-edit"><a href="user/profile"><spring:message code="profile.edit"/></a></li>
 	      <li id = "tab-editPassword"><a href="user/passwordForm"><spring:message code="profile.editPassword"/></a></li>
-	      <li><a href="#"><spring:message code="profile.orderList"/></a></li>
+	      <li id = "tab-order"><a href="order/list/1"><spring:message code="profile.orderList"/></a></li>
 	      <li id = "tab-email"><a><spring:message code="profile.sendValidationEmail"/></a></li>
 	    </ul>
 	    
