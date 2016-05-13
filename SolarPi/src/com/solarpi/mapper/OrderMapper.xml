@@ -4,12 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solarpi.mapper.OrderMapper">
   	<select id="getOrders" resultType="com.solarpi.model.Order">
-	  	SELECT * FROM ORDERS LIMIT ${startRow},${pageSize} 
+	  	SELECT * FROM ORDERS WHERE email = #{email}  ORDER BY date DESC LIMIT ${startRow},${pageSize}
   	</select>
   	
 	<select id="countOrders" resultType="java.lang.Integer">
-    	 SELECT count(1) FROM ORDERS
+    	 SELECT count(1) FROM ORDERS WHERE email = #{email}
 	</select>
 	
+  	<select id="getOrder" resultType="com.solarpi.model.Order">
+	  	SELECT * FROM ORDERS WHERE id = #{orderId} 
+  	</select>
+	
+  	<select id="getOrderDetail" resultType="com.solarpi.model.OrderDetail">
+	  	SELECT * FROM ORDER_DETAILS WHERE orderId = #{orderId} 
+  	</select>
+  	
 	
 </mapper>

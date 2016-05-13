@@ -1,6 +1,5 @@
 .green-bg{
 	background-color: #1abc9c;
-
 }
 
 .navbar
@@ -43,14 +42,13 @@
 	margin-top:20px;
 	padding-top:10px;
 	padding-bottom:10px;
-
+	display:block;
+	color:#34495e;
 }
 
-
-
 .order-row:hover{
-	cursor:pointer;
 	background-color:#1abc9c;
+	color:#34495e;
 }
 
 .order-row .index, .order-row .date, .order-row .total{
@@ -59,6 +57,7 @@
 
 .order-row img{
 	width:100px;
+	margin-right:5px
 }
 
 #register {

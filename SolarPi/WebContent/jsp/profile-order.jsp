@@ -20,7 +20,7 @@
 		</div>
 
 		<c:forEach items="${orders}" var="order" varStatus="status">  
-			<div class="row order-row">
+			<a class="row order-row" href="order/get/${order.id}">
 				<div class="col-xs-1 text-center index">
 					${(curPage -1) * pageSize + status.index + 1}
 				</div>
@@ -29,15 +29,15 @@
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${order.date}" />
 					</div>
 					<div class="col-md-6">
-						<img src ="img/user.png">
-						<img src ="img/user.png">
-						<img src ="img/user.png">
+						<c:forEach items="${orderDetailsList[status.index]}" var="orderDetail">  
+							<img src ="${orderDetail.productImage}">
+						</c:forEach> 
 					</div>
 					<div class="col-md-4  text-right total">
 						$${order.total}
 					</div>
 				</div>
-			</div>
+			</a>
 		</c:forEach> 
 		<div class="text-right">
 			<ul id="pagination"></ul>
