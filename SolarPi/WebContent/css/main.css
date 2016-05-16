@@ -1,6 +1,14 @@
 .green-bg{
 	background-color: #1abc9c;
 }
+.profile-wrapper {
+	margin: 0px 20px;
+}
+
+.profile-wrapper img{
+	width:100%;
+	max-width:100px;
+}
 
 .navbar
 {
@@ -74,11 +82,16 @@
 }
 
 #account-info {
+	padding-right:20px;
 	text-align:right;
 }
 
 .profile-content {
-	padding:10px 50px;
+	padding:10px 0px;
+}
+
+.profile-wrapper{
+	padding:10px 30px;
 }
 
 .modal {
@@ -99,24 +112,16 @@
   text-align: left;
   vertical-align: middle;
 }
-	
-@media (min-width: 960px) {
-	
-	#account-info {
-			padding-right:100px;
-	}
-
-	#reg-img{
-		width:200px;
-	}
-	
-	#reg-form:before{
-		display:block;
-	}
-}
-
 
 @media (min-width: 768px) {
+
+	.profile-wrapper {
+		margin: 0px 50px;
+	}
+	#account-info {
+		padding-right:50px;
+	}
+	
 	  .navbar-collapse {
 	    height: auto;
 	    border-top: 0;
@@ -170,6 +175,25 @@
 	
 	.order-row .index, .order-row .date, .order-row .total{
 		margin-top:35px
+	}
+}
+
+@media (min-width: 960px) {
+
+	.profile-wrapper {
+		margin: 0px 100px;
+	}
+
+	#account-info {
+		padding-right:100px;
+	}
+
+	#reg-img{
+		width:200px;
+	}
+	
+	#reg-form:before{
+		display:block;
 	}
 }
 }

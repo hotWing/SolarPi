@@ -18,29 +18,30 @@
 	  			<a href="user/signout?page=index.htm"><spring:message code="signout"/></a>
 	  		</span>
 		</div>
-
-		<c:forEach items="${orders}" var="order" varStatus="status">  
-			<a class="row order-row" href="order/get/${order.id}">
-				<div class="col-xs-1 text-center index">
-					${(curPage -1) * pageSize + status.index + 1}
-				</div>
-				<div class="col-xs-11">
-					<div class="col-md-2  text-left date">
-						<fmt:formatDate pattern="yyyy-MM-dd" value="${order.date}" />
+		<div class="profile-wrapper">
+			<c:forEach items="${orders}" var="order" varStatus="status">  
+				<a class="row order-row" href="order/get/${order.id}">
+					<div class="col-xs-1 text-center index">
+						${(curPage -1) * pageSize + status.index + 1}
 					</div>
-					<div class="col-md-6">
-						<c:forEach items="${orderDetailsList[status.index]}" var="orderDetail">  
-							<img src ="${orderDetail.productImage}">
-						</c:forEach> 
+					<div class="col-xs-11">
+						<div class="col-md-2  text-left date">
+							<fmt:formatDate pattern="yyyy-MM-dd" value="${order.date}" />
+						</div>
+						<div class="col-md-6">
+							<c:forEach items="${orderDetailsList[status.index]}" var="orderDetail">  
+								<img src ="${orderDetail.productImage}">
+							</c:forEach> 
+						</div>
+						<div class="col-md-4  text-right total">
+							$${order.total}
+						</div>
 					</div>
-					<div class="col-md-4  text-right total">
-						$${order.total}
-					</div>
-				</div>
-			</a>
-		</c:forEach> 
-		<div class="text-right">
-			<ul id="pagination"></ul>
+				</a>
+			</c:forEach> 
+			<div class="text-right">
+				<ul id="pagination"></ul>
+			</div>
 		</div>
 	</div>
 		

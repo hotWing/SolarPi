@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <title>SolarPi</title>
    	<base href="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}/">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/flat-ui.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
@@ -17,7 +17,6 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/flat-ui.js"></script>
 	<script src="js/application.js"></script>
-
 	
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <![if lt IE 9]>

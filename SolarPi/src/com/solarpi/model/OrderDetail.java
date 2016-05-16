@@ -5,6 +5,14 @@ public class OrderDetail {
 	private String orderId;
 	private String productName;
 	private String productImage;
+	private float price;
+	
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
 	public int getId() {
 		return id;
 	}

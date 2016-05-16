@@ -1,6 +1,7 @@
 <%@ page language="java"  import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
@@ -19,7 +20,7 @@
 	  			<a href="user/signout?page=index.htm"><spring:message code="signout"/></a>
 	  		</span>
 		</div>
-		<div>
+		<div class="profile-wrapper">
 	    	<c:if test="${not empty param.msg}">
 	    		<div style="color:#1abc9c;font-size:30px">
 		    		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
