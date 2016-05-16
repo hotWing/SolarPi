@@ -3,6 +3,7 @@
 }
 .profile-wrapper {
 	margin: 0px 20px;
+	padding:10px 15px;
 }
 
 .profile-wrapper img{
@@ -22,8 +23,12 @@
 	cursor:pointer;
 }
 
+#register h3{
+	font-size:30px
+}
+
 #reg-img{
-	width:150px;
+	width:100px;
 }
 
 #reg-form{
@@ -64,12 +69,12 @@
 }
 
 .order-row img{
-	width:100px;
+	max-width:60px;
 	margin-right:5px
 }
 
 #register {
-	padding-top:200px
+	padding-top:50px
 }
 
 #reg-form .error-msg, #edit-form .error-msg {
@@ -88,10 +93,6 @@
 
 .profile-content {
 	padding:10px 0px;
-}
-
-.profile-wrapper{
-	padding:10px 30px;
 }
 
 .modal {
@@ -114,6 +115,10 @@
 }
 
 @media (min-width: 768px) {
+
+	#register {
+	padding-top:150px
+	}
 
 	.profile-wrapper {
 		margin: 0px 50px;
@@ -172,16 +177,23 @@
 	.navbar-collapse .navbar-nav.navbar-right:last-child {
 	    margin-right: 0;
 	}
+}
+
+@media (min-width: 1200px) {
+	#register {
+	padding-top:200px
+	}
 	
 	.order-row .index, .order-row .date, .order-row .total{
 		margin-top:35px
 	}
-}
-
-@media (min-width: 960px) {
-
+	
 	.profile-wrapper {
 		margin: 0px 100px;
+	}
+	
+	#register h3{
+		font-size:40px
 	}
 
 	#account-info {
@@ -194,6 +206,10 @@
 	
 	#reg-form:before{
 		display:block;
+	}
+	.order-row img{
+		max-width:100px;
+		margin-right:5px
 	}
 }
 }

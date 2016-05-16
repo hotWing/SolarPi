@@ -25,16 +25,16 @@
 						${(curPage -1) * pageSize + status.index + 1}
 					</div>
 					<div class="col-xs-11">
-						<div class="col-md-2  text-left date">
+						<div class="col-sm-12 col-md-2  text-left date">
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${order.date}" />
 						</div>
-						<div class="col-md-6">
+						<div class="col-sm-12 col-md-6">
 							<c:forEach items="${orderDetailsList[status.index]}" var="orderDetail">  
 								<img src ="${orderDetail.productImage}">
 							</c:forEach> 
 						</div>
-						<div class="col-md-4  text-right total">
-							$${order.total}
+						<div class="col-sm-12 col-md-4  text-right total">
+							${order.total}
 						</div>
 					</div>
 				</a>
