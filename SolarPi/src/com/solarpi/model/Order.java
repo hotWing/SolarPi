@@ -9,6 +9,14 @@ public class Order {
 	private String tel;
 	private float total;
 	private String email;
+	private String consignee;
+	
+	public String getConsignee() {
+		return consignee;
+	}
+	public void setConsignee(String consignee) {
+		this.consignee = consignee;
+	}
 	public String getEmail() {
 		return email;
 	}

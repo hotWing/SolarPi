@@ -10,4 +10,6 @@ public interface OrderService {
 	public int countOrders(String email);
 	public Order getOrder(String orderId);
 	public List<OrderDetail> getOrderDetail(String orderId);
+	public void addOrder(Order order);
+	public void addOrderDetail(OrderDetail orderDetial);
 }

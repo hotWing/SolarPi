@@ -50,4 +50,14 @@ public class OrderDaoImpl implements com.solarpi.dao.OrderDao {
 		return sqlSession.selectList("com.solarpi.mapper.OrderMapper.getOrderDetail",params);
 	}
 
+	@Override
+	public void add(Order order) {
+		sqlSession.insert("com.solarpi.mapper.OrderMapper.add", order);
+	}
+
+	@Override
+	public void addOrderDetail(OrderDetail orderDetial) {
+		sqlSession.insert("com.solarpi.mapper.OrderMapper.addOrderDetail", orderDetial);
+	}
+
 }

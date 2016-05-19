@@ -20,20 +20,38 @@
 			</div>
 			<div class="profile-wrapper" style="background-color:white">
 				<div class="row">
-					<div class="col-lg-offset-1 col-lg-1  col-sm-2">
-						<h6 class="text-primary"><spring:message code="orderDetail.id"/></h6>
+					<div class="col-lg-offset-1 col-lg-1  col-sm-2 col-xs-5">
+						<p class="text-primary"><spring:message code="orderDetail.id"/></p>
 					</div>
-					<div class="col-sm-10 text-left">
-						<h6>${order.id}</h6>
+					<div class="col-xs-7 col-sm-10 text-left">
+						<p>${order.id}</p>
 					</div>
 				</div>
 				
 				<div class="row">
-					<div class="col-lg-offset-1 col-lg-1  col-sm-2">
+					<div class="col-lg-offset-1 col-lg-1  col-sm-2 col-xs-5">
 						<p class="text-primary"><spring:message code="orderDetail.date"/></p>
 					</div>
-					<div class="col-sm-10 text-left">
+					<div class="col-xs-7 col-sm-10 text-left">
 						<p><fmt:formatDate pattern="yyyy-MM-dd" value="${order.date}"/></p>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-offset-1 col-lg-1  col-sm-2 col-xs-5">
+						<p class="text-primary"><spring:message code="orderDetail.consignee"/></p>
+					</div>
+					<div class="col-xs-7 col-sm-10 text-left">
+						<p>${order.consignee}</p>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-offset-1 col-lg-1  col-sm-2 col-xs-5">
+						<p class="text-primary"><spring:message code="orderDetail.tel"/></p>
+					</div>
+					<div class="col-xs-7 col-sm-10 text-left">
+						<p>${order.tel}</p>
 					</div>
 				</div>
 				
@@ -43,15 +61,6 @@
 					</div>
 					<div class="col-sm-10 text-left">
 						<p>${order.address}</p>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-lg-offset-1 col-lg-1  col-sm-2">
-						<p class="text-primary"><spring:message code="orderDetail.tel"/></p>
-					</div>
-					<div class="col-sm-10 text-left">
-						<p>${order.tel}</p>
 					</div>
 				</div>
 				

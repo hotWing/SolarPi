@@ -19,5 +19,18 @@
 	  	SELECT * FROM ORDER_DETAILS WHERE orderId = #{orderId} 
   	</select>
   	
-	
+  	<insert id="add" parameterType="com.solarpi.model.Order">
+		INSERT INTO ORDERS
+	  	VALUES (
+	  		#{id},#{date},#{address},#{tel},#{total},#{email},#{consignee}
+	  	)
+  	</insert>
+  	
+  	<insert id="addOrderDetail" parameterType="com.solarpi.model.OrderDetail">
+		INSERT INTO ORDER_DETAILS
+			(orderId,productName,productImage,quantity,price)
+	  	VALUES (
+	  		#{orderId},#{productName},#{productImage},#{quantity},#{price}
+	  	)
+  	</insert>
 </mapper>

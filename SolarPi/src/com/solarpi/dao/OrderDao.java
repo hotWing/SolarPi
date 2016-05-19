@@ -13,4 +13,8 @@ public interface OrderDao {
 	public Order getOrder(String orderId);
 
 	public List<OrderDetail> getOrderDetail(String orderId);
+
+	public void add(Order order);
+
+	public void addOrderDetail(OrderDetail orderDetial);
 }

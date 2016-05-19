@@ -21,10 +21,10 @@
 		<div class="profile-wrapper">
 			<c:forEach items="${orders}" var="order" varStatus="status">  
 				<a class="row order-row" href="order/get/${order.id}">
-					<div class="col-xs-1 text-center index">
+					<div class="col-xs-2 col-sm-1 text-center index">
 						${(curPage -1) * pageSize + status.index + 1}
 					</div>
-					<div class="col-xs-11">
+					<div class="col-xs-10 col-sm-11">
 						<div class="col-sm-12 col-md-2  text-left date">
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${order.date}" />
 						</div>
