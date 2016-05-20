@@ -33,4 +33,36 @@
 	  		#{orderId},#{productName},#{productImage},#{quantity},#{price}
 	  	)
   	</insert>
+  	
+  	<select id="getTopSalesCountry" resultType="com.solarpi.model.CountryStats">
+		SELECT * 
+		FROM(
+			SELECT u.country,SUM(od.quantity) AS sales
+				FROM order_details od 
+					LEFT JOIN orders o ON od.orderId = o.id
+					LEFT JOIN users u ON u.email = o.email
+			<if test="productName != null and productName != ''">  
+				WHERE od.productName = #{productName}
+	    	</if>
+			GROUP BY u.country ) as t
+		ORDER BY sales DESC
+		LIMIT 0,${topNum}
+  	</select>
+  	
+  	<select id="getProductSales" resultType="com.solarpi.model.ProductStats">
+		SELECT productName,SUM(quantity) AS sales FROM order_details GROUP BY  productName
+  	</select>
+  	
+<!-- SELECT *  -->
+<!-- FROM( -->
+<!-- 	SELECT u.country,SUM(od.quantity) AS sales -->
+<!-- 		FROM order_details od  -->
+<!-- 			LEFT JOIN orders o ON od.orderId = o.id -->
+<!-- 			LEFT JOIN users u ON u.email = o.email -->
+<!-- 	WHERE od.productName = 'C100' -->
+<!-- 	GROUP BY u.country ) as t -->
+<!-- ORDER BY sales DESC -->
+<!-- LIMIT 0,3 -->
+
+
 </mapper>

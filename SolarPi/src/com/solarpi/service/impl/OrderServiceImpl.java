@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.solarpi.controller.OrderController;
 import com.solarpi.dao.OrderDao;
+import com.solarpi.model.CountryStats;
 import com.solarpi.model.Order;
 import com.solarpi.model.OrderDetail;
+import com.solarpi.model.ProductStats;
 import com.solarpi.service.OrderService;
 
 @Service
@@ -48,6 +50,16 @@ public class OrderServiceImpl implements OrderService {
 	public void addOrderDetail(OrderDetail orderDetial) {
 		orderDao.addOrderDetail(orderDetial);
 		
+	}
+
+	@Override
+	public List<CountryStats> getTopSalesCountry(String productName, int topNum) {
+		return orderDao.getTopSalesCountry(productName, topNum) ;
+	}
+
+	@Override
+	public List<ProductStats> getProductSales() {
+		return orderDao.getProductSales();
 	}
 
 }

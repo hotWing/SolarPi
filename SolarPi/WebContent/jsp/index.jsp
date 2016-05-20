@@ -14,16 +14,23 @@
 			  		<span>
 			  			<label>${sessionScope.email}</label>
 			  			|
-			  			<a href="user/profile">个人设置</a>
+			  			<c:choose>
+				  			<c:when test="${sessionScope.email=='admin@solarpi'}">
+				  				<a href="admin/passwordForm"><spring:message code="manage"/></a>
+				  			</c:when>
+				  			<c:otherwise>
+				  				<a href="user/profile"><spring:message code="setting"/></a>
+				  			</c:otherwise>
+			  			</c:choose>
 			  			|
-			  			<a href="user/signout?page=index.htm">退出</a>
+			  			<a href="user/signout?page=index.htm"><spring:message code="signout"/></a>
 			  		</span>
 			  	</c:when>
 			  	<c:otherwise>
 				    <span>
-				  		<a href="user/regform">注册</a>
+				  		<a href="user/regform"><spring:message code="signup"/></a>
 				  		|
-				  		<a href="user/signinform">登录</a>
+				  		<a href="user/signinform"><spring:message code="signin"/></a>
 				  	</span>
 			  	</c:otherwise>
 			</c:choose>

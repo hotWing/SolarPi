@@ -13,7 +13,7 @@
 		<div id="register"  class="row">
   			<div class="col-sm-3 text-center col-sm-offset-1">
   				<img id="reg-img" src="img/user.png">
-  				<h3><spring:message code="register.title"/></h3>
+<%--   				<h3><spring:message code="register.title"/></h3> --%>
   			</div>
   			<div class="col-sm-6">
   				<div id="reg-form">

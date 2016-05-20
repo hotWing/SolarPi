@@ -8,8 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.solarpi.model.CountryStats;
 import com.solarpi.model.Order;
 import com.solarpi.model.OrderDetail;
+import com.solarpi.model.ProductStats;
 
 @Repository
 public class OrderDaoImpl implements com.solarpi.dao.OrderDao {
@@ -58,6 +60,23 @@ public class OrderDaoImpl implements com.solarpi.dao.OrderDao {
 	@Override
 	public void addOrderDetail(OrderDetail orderDetial) {
 		sqlSession.insert("com.solarpi.mapper.OrderMapper.addOrderDetail", orderDetial);
+	}
+
+	@Override
+	public List<CountryStats> getTopSalesCountry(String productName, int topNum) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		if (!productName.equals("all"))
+			params.put("productName", productName);
+		params.put("topNum", topNum);
+		
+		List<CountryStats> res = sqlSession.selectList("com.solarpi.mapper.OrderMapper.getTopSalesCountry", params);
+		return res;
+	}
+
+	@Override
+	public List<ProductStats> getProductSales() {
+		List<ProductStats> res = sqlSession.selectList("com.solarpi.mapper.OrderMapper.getProductSales");
+		return res;
 	}
 
 }
