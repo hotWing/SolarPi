@@ -23,6 +23,7 @@ import com.solarpi.dao.UserDao;
 import com.solarpi.model.User;
 import com.solarpi.service.UserService;
 import com.solarpi.util.MD5Util;
+import com.solarpi.util.Status;
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -175,7 +176,6 @@ public class UserServiceImpl implements UserService {
 				return "sent";
 			
 			Calendar cl = Calendar.getInstance();  
-			
 			user.setValidateCode(MD5Util.toMD5(user.getEmail()+cl.getTime().toString()));
 			
 	        cl.add(Calendar.DATE , 2); 
@@ -188,5 +188,109 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 			return "fail";
 		}
+	}
+
+	@Override
+	public String forgotPasswordEmail(String email) {
+		User user = userDao.getUser(email);
+		if (user == null) 
+			return "invalidEmail";
+		
+		// Recipient's email ID needs to be mentioned.
+	      String to = user.getEmail();
+
+	      // Sender's email ID needs to be mentioned
+	      String from = "service@vbuilding.net";
+	      String UserPassword = "19860922qQ";
+
+	      // Assuming you are sending email from localhost
+	      String host = "smtp.exmail.qq.com";
+
+	      // Get system properties
+	      Properties properties = System.getProperties();
+
+	      // Setup mail server
+	      properties.setProperty("mail.smtp.host", host);
+	      
+	      properties.setProperty("mail.smtp.auth", "true");
+	      
+	      Session session = Session.getInstance(properties,
+	    	         new javax.mail.Authenticator() {
+	    	            protected PasswordAuthentication getPasswordAuthentication() {
+	    	               return new PasswordAuthentication(
+	    	            		   from, UserPassword);
+	    	            }
+	    	         });
+	      try{
+	         // Create a default MimeMessage object.
+	         MimeMessage message = new MimeMessage(session);
+
+	         // Set From: header field of the header.
+	         message.setFrom(new InternetAddress(from));
+
+	         // Set To: header field of the header.
+	         message.addRecipient(Message.RecipientType.TO,
+	                                  new InternetAddress(to));
+
+	         // Set Subject: header field
+	         message.setSubject("太阳派");
+
+	         // Create the message part 
+	         BodyPart messageBodyPart = new MimeBodyPart();
+
+	         ///邮件的内容  
+	         StringBuffer bodySb=new StringBuffer("请点击下面的链接重设密码，48小时内有效！\n");  
+
+	         bodySb.append("http://192.168.12.244:8080/SolarPi/user/resetPasswordForm?email=");   
+	         bodySb.append(to);  
+	         bodySb.append("&resetCode=");  
+         	 Calendar cl = Calendar.getInstance();  
+			 user.setPasswordResetCode(MD5Util.toMD5(user.getEmail()+cl.getTime().toString()));
+			 cl.add(Calendar.DATE , 2); 
+			 user.setPasswordResetTime(cl.getTime());
+			 user.setPasswordReset(0);
+	         userDao.update(user);
+	         bodySb.append(user.getPasswordResetCode());  
+	         // Fill the message
+	         messageBodyPart.setText(bodySb.toString());
+	         
+	         // Create a multipar message
+	         Multipart multipart = new MimeMultipart();
+
+	         // Set text message part
+	         multipart.addBodyPart(messageBodyPart);
+
+	         // Send the complete message parts
+	         message.setContent(multipart);
+	         // Send message
+	         
+	         Transport.send(message);
+	         
+	      }catch (MessagingException mex) {
+	         mex.printStackTrace();
+	      }
+		return "success";
+	}
+
+	@Override
+	public Status resetPassword(User tempUser) {
+		User user = userDao.getUser(tempUser.getEmail());
+		if (user == null)
+			return Status.INVALID_EMAIL;
+		if (user.getPasswordReset() == 1)
+			return Status.EXPIRED;
+		Date currentTime = new Date();
+		if(currentTime.before(user.getPasswordResetTime())){
+			if(tempUser.getPasswordResetCode().equals(user.getPasswordResetCode())){
+				user.setPassword(MD5Util.toMD5(tempUser.getPassword()));
+				user.setPasswordReset(1);
+				userDao.update(user);
+				return Status.SUCCESS;
+			}
+			else
+				return Status.INVALID_CODE;
+		}
+		else 
+			return Status.EXPIRED;
 	}
 }

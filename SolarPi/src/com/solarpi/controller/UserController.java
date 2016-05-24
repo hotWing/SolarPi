@@ -21,6 +21,7 @@ import com.solarpi.service.CityService;
 import com.solarpi.service.CountryService;
 import com.solarpi.service.UserService;
 import com.solarpi.util.MD5Util;
+import com.solarpi.util.Status;
 import com.solarpi.util.StringUtil;
 import com.solarpi.validator.First;
 import com.solarpi.validator.Second;
@@ -42,6 +43,45 @@ public class UserController {
 	
 	public final static String SIGNIN_PAGE = "redirect:../index.htm";
 	  
+	@RequestMapping("/resetPassword")
+	public String resetPassword(@Validated ({Third.class})User user, Errors errors, HttpServletRequest request,Model model) {
+		userValidator.validate(user, errors);
+		
+		if (errors.hasErrors()) {
+			model.addAttribute("user", user);
+			return "resetPassword";
+        }
+		else {
+			Status status = userService.resetPassword(user);
+			if (status == Status.SUCCESS)
+				model.addAttribute("msg","signin.resetPassword.done");
+			else
+				model.addAttribute("msg","signin.resetPassword.fail");
+			return "register-info";
+		}
+	}
+	
+	
+	@RequestMapping("/resetPasswordForm")
+	public String resetPasswordForm(String email, String resetCode, HttpServletRequest request, Model model) {
+		User user = new User();
+		user.setEmail(email);
+		user.setPasswordResetCode(resetCode);
+		model.addAttribute("user",user);
+		return "resetPassword";
+	}
+	
+	@RequestMapping("/forgotPasswordForm")
+	public String forgotPasswordForm() {
+		return "forgotPassword";
+	}
+	
+	@RequestMapping("/forgotPasswordEmail")
+	@ResponseBody
+	public String forgotPasswordEmail(String email) {
+		return userService.forgotPasswordEmail(email);
+	}
+	
 	@RequestMapping("/reSendEmail")
 	@ResponseBody
 	public String reSendEmail(String email) {
@@ -61,6 +101,7 @@ public class UserController {
 		model.addAttribute("activeTab","#tab-edit");
 		return "profile-settings";
 	}
+
 	
 	@RequestMapping("/passwordForm")
 	public String passwordForm(HttpServletRequest request, Model model){
@@ -74,6 +115,7 @@ public class UserController {
 		model.addAttribute("activeTab","#tab-editPassword");
 		return "profile-password";
 	}
+	
 	
 	@RequestMapping("/regform")
 	public String regform(Model model){

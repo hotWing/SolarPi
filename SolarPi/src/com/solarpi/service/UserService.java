@@ -1,6 +1,7 @@
 package com.solarpi.service;
 
 import com.solarpi.model.User;
+import com.solarpi.util.Status;
 
 public interface UserService {
 	public void addUser(User user);
@@ -11,5 +12,7 @@ public interface UserService {
 	public User getUserInfo(String email);
 	public void edit(String email, String country, String city);
 	public String reSendEmail(String email);
+	public String forgotPasswordEmail(String email);
+	public Status resetPassword(User tempUser);
 	
 }

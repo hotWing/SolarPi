@@ -38,6 +38,11 @@
 			           	</div>
 			           	<button type="submit" class="btn btn-primary" style="width:100%"><spring:message code="register.submit"/></button>
 					</form:form>
+					<div class="text-right">
+						<a href="user/forgotPasswordForm"><spring:message code="signin.forgotPassword"/></a>
+						|
+						<a href="index.htm"><spring:message code="toIndex"/></a>
+					</div>
   				</div>
   			</div>
 		</div>

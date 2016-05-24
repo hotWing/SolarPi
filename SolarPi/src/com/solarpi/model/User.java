@@ -32,7 +32,28 @@ public class User {
 	private Date registerTime;
 	private Date activeTime;
 	private String validateCode;
+	private String passwordResetCode;
+	private Date passwordResetTime;
+	private int passwordReset;
 	
+	public int getPasswordReset() {
+		return passwordReset;
+	}
+	public void setPasswordReset(int passwordReset) {
+		this.passwordReset = passwordReset;
+	}
+	public Date getPasswordResetTime() {
+		return passwordResetTime;
+	}
+	public void setPasswordResetTime(Date passwordResetTime) {
+		this.passwordResetTime = passwordResetTime;
+	}
+	public String getPasswordResetCode() {
+		return passwordResetCode;
+	}
+	public void setPasswordResetCode(String passwordResetCode) {
+		this.passwordResetCode = passwordResetCode;
+	}
 	public String getCity() {
 		return city;
 	}

@@ -20,7 +20,9 @@
   		UPDATE USERS SET password = #{password},
   						confirmPassword = #{confirmPassword},country = #{country},
   						city = #{city},isActived = #{isActived},registerTime = #{registerTime},
-  						activeTime = #{activeTime},validateCode = #{validateCode}
+  						activeTime = #{activeTime},validateCode = #{validateCode},
+  						passwordResetCode = #{passwordResetCode}, passwordResetTime = #{passwordResetTime},
+  						passwordReset = #{passwordReset}
  		WHERE  email = #{email}				
   	</update>
 </mapper>

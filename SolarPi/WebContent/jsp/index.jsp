@@ -40,6 +40,7 @@
 				<img src="img/c100.jpg" width="100%">
 			</div>
 			<div class="col-sm-6 info">
+				<img src="img/text-logo.png">
 				<h3><spring:message code="index.slogn"/></h3>
 				<p><spring:message code="index.intro"/></p>
 				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
@@ -47,6 +48,53 @@
 				</button>
 			</div>
 		</div>
+	  </div>
+	  <div id = "product-warpper">
+	  	<p class="section-title text-center"><spring:message code="index.productIntro"/></p>
+	  	<div class="product-info row">
+	  		<div class="col-sm-6">
+	  			<img src="img/test.png">
+	  		</div>
+	  		<div>
+  				<p class="name"><spring:message code="index.product.c10"/></p>
+  				<p class="info"><spring:message code="index.c10.intro"/></p>
+  				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
+					<spring:message code="index.buy"/>
+				</button>
+	  		</div>
+	  	</div>
+	  	<div class="product-info row">
+	  		<div class="col-sm-6">
+	  			<img src="img/test.png">
+	  		</div>
+	  		<div>
+  				<p class="name"><spring:message code="index.product.c50"/></p>
+  				<p class="info"><spring:message code="index.c50.intro"/></p>
+  				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
+					<spring:message code="index.buy"/>
+				</button>
+	  		</div>
+	  	</div>
+	  	<div class="product-info row">
+	  		<div class="col-sm-6">
+	  			<img src="img/test.png">
+	  		</div>
+	  		<div>
+  				<p class="name"><spring:message code="index.product.c100"/></p>
+  				<p class="info"><spring:message code="index.c100.intro"/></p>
+  				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
+					<spring:message code="index.buy"/>
+				</button>
+	  		</div>
+	  	</div>
+	  </div>
+	  <div id = "company-info">
+	  	<p class="title"><spring:message code="index.company.title"/></p>
+	  	<p class="intro"><spring:message code="index.company.intro"/></p>
+	  </div>
+	  <div id = "bottom" class="text-center">
+	  	<img src="img/text-logo.png">
+	  	<p>LIGHT UP THE WORLD</p>
 	  </div>
 	</body>
 	
@@ -117,7 +165,7 @@
 			<tr>
 				<td></td>
 				<td class="text-right">
-					<span class="text-primary">总计</span>
+					<span class="text-primary"><spring:message code="orderDetail.total"/></span>
 				</td>
 				<td class="text-right" id ="total">0.00</td>
 			</tr>
