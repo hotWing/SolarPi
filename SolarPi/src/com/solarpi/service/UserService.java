@@ -14,5 +14,5 @@ public interface UserService {
 	public String reSendEmail(String email);
 	public String forgotPasswordEmail(String email);
 	public Status resetPassword(User tempUser);
-	
+	public Boolean getIsActived(String email);
 }

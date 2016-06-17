@@ -33,5 +33,11 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.update("com.solarpi.mapper.UserMapper.update",user);
 	}
 
+	@Override
+	public int getIsActived(String email) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("email", email);
+		return sqlSession.selectOne("com.solarpi.mapper.UserMapper.getIsActived", params);
+	}
 
 }

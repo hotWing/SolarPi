@@ -35,15 +35,16 @@
 			  	</c:otherwise>
 			</c:choose>
 	  	</div>
-		<div class="row">
+		<div id="top-info" class="row">
 			<div class="col-sm-6 text-center col-no-padding">
-				<img src="img/c100.jpg" width="100%">
+				<img src="img/c100da.png" width="100%" style="max-width:561px">
 			</div>
 			<div class="col-sm-6 info">
 				<img src="img/text-logo.png">
 				<h3><spring:message code="index.slogn"/></h3>
 				<p><spring:message code="index.intro"/></p>
 				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
+					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
 					<spring:message code="index.buy"/>
 				</button>
 			</div>
@@ -52,39 +53,158 @@
 	  <div id = "product-warpper">
 	  	<p class="section-title text-center"><spring:message code="index.productIntro"/></p>
 	  	<div class="product-info row">
-	  		<div class="col-sm-6">
-	  			<img src="img/test.png">
+	  		<div class="col-sm-12 col-md-6">
+	  			<img src="img/product/c10.png">
 	  		</div>
-	  		<div>
+	  		<div class="col-sm-12 col-md-6 info-warpper">
   				<p class="name"><spring:message code="index.product.c10"/></p>
-  				<p class="info"><spring:message code="index.c10.intro"/></p>
-  				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
-					<spring:message code="index.buy"/>
-				</button>
+				<div class="row">
+					<div class="col-sm-4 col-md-3">
+						<p class="info"><spring:message code="index.Capacity"/></p>
+			  		</div>
+					<div class="col-sm-8 col-md-9">
+						<p class="info"><spring:message code="index.Capacity.c10"/></p>
+			  		</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 col-md-3">
+						<p class="info"><spring:message code="index.OutputVoltage"/></p>
+			  		</div>
+					<div class="col-sm-8 col-md-9">
+						<p class="info"><spring:message code="index.OutputVoltage.c10"/></p>
+			  		</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 col-md-3">
+						<p class="info"><spring:message code="index.Accessories"/></p>
+			  		</div>
+					<div class="col-sm-8 col-md-9">
+						<p class="info"><spring:message code="index.Accessories.c10.1"/></p>
+						<p class="info"><spring:message code="index.Accessories.c10.2"/></p>
+						<p class="info"><spring:message code="index.Accessories.c10.3"/></p>
+			  		</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 col-md-3">
+						<p class="price text-center">
+							<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+							99
+						</p>
+			  		</div>
+					<div class="col-xs-8 col-md-9 text-right">
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#c10Modal">
+							<spring:message code="index.more"/>
+						</button>
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
+							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+							<spring:message code="index.buy"/>
+						</button>
+			  		</div>
+				</div>
 	  		</div>
 	  	</div>
+	  	
+	  	
 	  	<div class="product-info row">
-	  		<div class="col-sm-6">
-	  			<img src="img/test.png">
+	  		<div class="col-sm-12 col-md-6">
+	  			<img src="img/product/c50.png">
 	  		</div>
-	  		<div>
+	  		<div class="col-sm-12 col-md-6 info-warpper">
   				<p class="name"><spring:message code="index.product.c50"/></p>
-  				<p class="info"><spring:message code="index.c50.intro"/></p>
-  				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
-					<spring:message code="index.buy"/>
-				</button>
+				<div class="row">
+					<div class="col-sm-4 col-md-3 ">
+						<p class="info"><spring:message code="index.Capacity"/></p>
+			  		</div>
+					<div class="col-sm-8 col-md-9">
+						<p class="info"><spring:message code="index.Capacity.c50"/></p>
+			  		</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 col-md-3">
+						<p class="info"><spring:message code="index.OutputVoltage"/></p>
+			  		</div>
+					<div class="col-sm-8 col-md-9">
+						<p class="info"><spring:message code="index.OutputVoltage.c50"/></p>
+			  		</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 col-md-3">
+						<p class="info"><spring:message code="index.Accessories"/></p>
+			  		</div>
+					<div class="col-sm-8 col-md-9">
+						<p class="info"><spring:message code="index.Accessories.c50.1"/></p>
+						<p class="info"><spring:message code="index.Accessories.c50.2"/></p>
+						<p class="info"><spring:message code="index.Accessories.c50.3"/></p>
+			  		</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 col-md-3">
+						<p class="price text-center">
+							<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+							999
+						</p>
+			  		</div>
+					<div class="col-xs-8 col-md-9 text-right">
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#c50Modal">
+							<spring:message code="index.more"/>
+						</button>
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
+							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+							<spring:message code="index.buy"/>
+						</button>
+			  		</div>
+				</div>
 	  		</div>
 	  	</div>
 	  	<div class="product-info row">
-	  		<div class="col-sm-6">
-	  			<img src="img/test.png">
+	  		<div class="col-sm-12 col-md-6">
+	  			<img src="img/product/c100.png">
 	  		</div>
-	  		<div>
-  				<p class="name"><spring:message code="index.product.c100"/></p>
-  				<p class="info"><spring:message code="index.c100.intro"/></p>
-  				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
-					<spring:message code="index.buy"/>
-				</button>
+	  		<div class="col-sm-12 col-md-6 info-warpper">
+  				  				<p class="name"><spring:message code="index.product.c100"/></p>
+				<div class="row">
+					<div class="col-sm-4 col-md-3">
+						<p class="info"><spring:message code="index.Capacity"/></p>
+			  		</div>
+					<div class="col-sm-8 col-md-9">
+						<p class="info"><spring:message code="index.Capacity.c100"/></p>
+			  		</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 col-md-3">
+						<p class="info"><spring:message code="index.OutputVoltage"/></p>
+			  		</div>
+					<div class="col-sm-8 col-md-9">
+						<p class="info"><spring:message code="index.OutputVoltage.c100"/></p>
+			  		</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 col-md-3">
+						<p class="info"><spring:message code="index.Accessories"/></p>
+			  		</div>
+					<div class="col-sm-8 col-md-9">
+						<p class="info"><spring:message code="index.Accessories.c100.1"/></p>
+						<p class="info"><spring:message code="index.Accessories.c100.2"/></p>
+						<p class="info"><spring:message code="index.Accessories.c100.3"/></p>
+			  		</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 col-md-3">
+						<p class="price text-center">
+							<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+							1999
+						</p>
+			  		</div>
+					<div class="col-xs-8 col-md-9 text-right">
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#c100Modal">
+							<spring:message code="index.more"/>
+						</button>
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyModal">
+							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+							<spring:message code="index.buy"/>
+						</button>
+			  		</div>
+				</div>
 	  		</div>
 	  	</div>
 	  </div>
@@ -92,9 +212,16 @@
 	  	<p class="title"><spring:message code="index.company.title"/></p>
 	  	<p class="intro"><spring:message code="index.company.intro"/></p>
 	  </div>
+	  
+  	  <div id = "instruction">
+	  	<p class="title"><spring:message code="index.instruction.title"/></p>
+	  	<p class="intro"><spring:message code="index.instruction.intro"/></p>
+	  </div>
+	  
+	  
 	  <div id = "bottom" class="text-center">
 	  	<img src="img/text-logo.png">
-	  	<p>LIGHT UP THE WORLD</p>
+	  	<p style="text-align:center">LIGHT UP THE WORLD</p>
 	  </div>
 	</body>
 	
@@ -110,7 +237,56 @@
       </div>
     </div>
   </div>
-</div>	
+</div>
+
+<div class="modal fade" id="c10Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+  	  <div class="modal-header">
+  	    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h6 class="modal-title"><spring:message code="index.product.c10"/></h6>
+      </div>
+      <div class="modal-body">
+          	<p class="title"><spring:message code="index.Usage.C10"/></p>
+          	<img src="img/c10-more.png" width=100%;>
+        </div>
+      </div>
+    </div>
+ </div>
+ 
+ <div class="modal fade" id="c50Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+  	  <div class="modal-header">
+  	    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h6 class="modal-title"><spring:message code="index.product.c50"/></h6>
+      </div>
+      <div class="modal-body">
+          	<p class="title"><spring:message code="index.Indicator"/></p>
+          	<p><spring:message code="index.Indicator.Content"/></p>
+          	<p class="title"><spring:message code="index.Usage.C50"/></p>
+          	<img src="img/c50-more.png" width=100%;>
+        </div>
+      </div>
+    </div>
+ </div>
+ 
+ <div class="modal fade" id="c100Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+  	  <div class="modal-header">
+  	    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h6 class="modal-title"><spring:message code="index.product.c100"/></h6>
+      </div>
+      <div class="modal-body">
+          	<p class="title"><spring:message code="index.Indicator"/></p>
+          	<p><spring:message code="index.Indicator.Content"/></p>
+          	<p class="title"><spring:message code="index.Usage.C100"/></p>
+          	<img src="img/c100-more.png" width=100%;>
+        </div>
+      </div>
+    </div>
+ </div>
 	
 <div class="modal fade" data-backdrop="static" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog">
@@ -188,7 +364,7 @@
          <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel"/></button>
       </div>
     </div>
-  </div>
+  </div> 
 </div>
 <script src="js/index.js"></script>
 <script>
@@ -237,6 +413,8 @@ $('#confirm-buy').on('click', function() {
 	        success: function(msg){
 		        			if(msg == "signin")
 		        				window.location.href = "user/signinform";
+		        			else if (msg == "notActived")
+		        				$('#payModal .modal-body').html("<spring:message code='index.pay.notActived'/>");	
 		        			else if (msg == "success")
 		        				$('#payModal .modal-body').html("<spring:message code='index.pay.complete'/>");	
 //		        			else if (msg == "sent")

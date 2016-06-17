@@ -16,4 +16,5 @@ public interface OrderService {
 	public void addOrderDetail(OrderDetail orderDetial);
 	public List<CountryStats> getTopSalesCountry(String productName, int topNum);
 	public List<ProductStats> getProductSales();
+	public void emailOrderToAdmin(Order order, List<OrderDetail> orderDetails);
 }

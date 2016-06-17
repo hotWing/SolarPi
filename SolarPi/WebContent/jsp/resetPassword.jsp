@@ -40,8 +40,8 @@
     					<button id="submit" class="btn btn-primary" style="width:100%"><spring:message code="save"/></button>
 					</form:form>
 					<div class="text-right">
-							<a href="index.htm"><spring:message code="toIndex"/></a>
-						</div>
+						<a href="index.htm"><spring:message code="toIndex"/></a>
+					</div>
   				</div>
   			</div>
 		</div>

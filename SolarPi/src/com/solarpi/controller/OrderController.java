@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.solarpi.model.Order;
 import com.solarpi.model.OrderDetail;
 import com.solarpi.service.OrderService;
+import com.solarpi.service.UserService;
 import com.solarpi.util.StringUtil;
 import com.solarpi.util.UniqueID;
 
@@ -23,12 +24,15 @@ import com.solarpi.util.UniqueID;
 @RequestMapping("/order")
 public class OrderController {
 	public static final int PAGE_SIZE = 5;
-	public static final float C10_PRICE = 111.12f;
-	public static final float C50_PRICE = 222.11f;
-	public static final float C100_PRICE = 999.11f;
+	public static final float C10_PRICE = 99f;
+	public static final float C50_PRICE = 999f;
+	public static final float C100_PRICE = 1999f;
 
 	@Autowired
 	OrderService orderService;
+	
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping("/list/{page}")
 	public String list(@PathVariable int page, HttpServletRequest request, Model model){
@@ -79,6 +83,10 @@ public class OrderController {
 		//»¹Î´µÇÂ¼
 		if(StringUtil.isNullOrEmpty(email))
 			return "signin";
+		
+		if (!userService.getIsActived(email)) 
+			return "notActived";
+		
 		String orderId = String.valueOf(UniqueID.getId());
 		Order order = new Order();
 		order.setId(orderId);
@@ -94,16 +102,18 @@ public class OrderController {
 		
 		orderService.addOrder(order);
 		
+		List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 		if(c10quantity>0)
 		{
 			OrderDetail orderDetial = new OrderDetail();
 			orderDetial.setOrderId(orderId);
 			orderDetial.setProductName("c10");
-			orderDetial.setProductImage("img/product/c10.jpg");
+			orderDetial.setProductImage("img/product/c10s.png");
 			orderDetial.setQuantity(c10quantity);
 			price = c10quantity * C10_PRICE;
 			orderDetial.setPrice((float)Math.round(price*100)/100);
 			orderService.addOrderDetail(orderDetial);
+			orderDetails.add(orderDetial);
 		}
 		
 		if(c50quantity>0)
@@ -111,11 +121,12 @@ public class OrderController {
 			OrderDetail orderDetial = new OrderDetail();
 			orderDetial.setOrderId(orderId);
 			orderDetial.setProductName("c50");
-			orderDetial.setProductImage("img/product/c50.jpg");
+			orderDetial.setProductImage("img/product/c50s.png");
 			orderDetial.setQuantity(c50quantity);
 			price = c50quantity * C50_PRICE;
 			orderDetial.setPrice((float)Math.round(price*100)/100);
 			orderService.addOrderDetail(orderDetial);
+			orderDetails.add(orderDetial);
 		}
 		
 		if(c100quantity>0)
@@ -123,12 +134,15 @@ public class OrderController {
 			OrderDetail orderDetial = new OrderDetail();
 			orderDetial.setOrderId(orderId);
 			orderDetial.setProductName("c100");
-			orderDetial.setProductImage("img/product/c100.jpg");
+			orderDetial.setProductImage("img/product/c100s.png");
 			orderDetial.setQuantity(c100quantity);
 			price = c100quantity * C100_PRICE;
 			orderDetial.setPrice((float)Math.round(price*100)/100);
 			orderService.addOrderDetail(orderDetial);
+			orderDetails.add(orderDetial);
 		}
+		
+		orderService.emailOrderToAdmin(order, orderDetails);
 		
 		return "success";
 	}

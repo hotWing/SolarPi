@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	var c10price = 111.12;
-	var c50price = 222.11;
-	var c100price = 999.11;
+	var c10price = 99;
+	var c50price = 999;
+	var c100price = 1999;
 	var $c10quantity = $('#c10-quantity');
 	var $c10subtotal = $('#c10-subtotal');
 	var curQuantity10 = parseInt($c10quantity.text());

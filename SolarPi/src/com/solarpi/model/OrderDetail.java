@@ -5,6 +5,7 @@ public class OrderDetail {
 	private String orderId;
 	private String productName;
 	private String productImage;
+	private int quantity;
 	private float price;
 	
 	public float getPrice() {
@@ -43,5 +44,5 @@ public class OrderDetail {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	private int quantity;
+
 }

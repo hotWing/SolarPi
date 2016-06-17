@@ -74,14 +74,15 @@ public class UserServiceImpl implements UserService {
 	                                  new InternetAddress(to));
 
 	         // Set Subject: header field
-	         message.setSubject("太阳派");
+	         //message.setSubject("太阳派");
+	         message.setSubject("Solarpi");
 
 	         // Create the message part 
 	         BodyPart messageBodyPart = new MimeBodyPart();
 
 	         ///邮件的内容  
-	         StringBuffer bodySb=new StringBuffer("点击下面链接激活账号，请于48小时之内激活！\n");  
- 
+	         //StringBuffer bodySb=new StringBuffer("点击下面链接激活账号，请于48小时之内激活！\n");  
+	         StringBuffer bodySb=new StringBuffer("Click the link below to active your email. The link expires in 48 hours!\n");  
 	         bodySb.append("http://192.168.12.244:8080/SolarPi/user/active?email=");   
 	         bodySb.append(to);  
 	         bodySb.append("&validateCode=");  
@@ -233,13 +234,15 @@ public class UserServiceImpl implements UserService {
 	                                  new InternetAddress(to));
 
 	         // Set Subject: header field
-	         message.setSubject("太阳派");
-
+	         //message.setSubject("太阳派");
+	         message.setSubject("Solarpi");
+	         
 	         // Create the message part 
 	         BodyPart messageBodyPart = new MimeBodyPart();
 
 	         ///邮件的内容  
-	         StringBuffer bodySb=new StringBuffer("请点击下面的链接重设密码，48小时内有效！\n");  
+	         //StringBuffer bodySb=new StringBuffer("请点击下面的链接重设密码，48小时内有效！\n");  
+	         StringBuffer bodySb=new StringBuffer("Click the link below to reset your password. The link expires in 48 hours!\n");  
 
 	         bodySb.append("http://192.168.12.244:8080/SolarPi/user/resetPasswordForm?email=");   
 	         bodySb.append(to);  
@@ -292,5 +295,11 @@ public class UserServiceImpl implements UserService {
 		}
 		else 
 			return Status.EXPIRED;
+	}
+
+	@Override
+	public Boolean getIsActived(String email) {
+		int i = userDao.getIsActived(email);
+		return i == 1;
 	}
 }

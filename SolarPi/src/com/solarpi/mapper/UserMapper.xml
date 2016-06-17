@@ -16,6 +16,11 @@
   		WHERE email = #{email}
   	</select>
   	
+  	<select id="getIsActived" parameterType="Map" resultType="java.lang.Integer">
+  		SELECT isActived FROM USERS
+  		WHERE email = #{email}
+  	</select>
+  	
   	<update id="update" parameterType="com.solarpi.model.User">
   		UPDATE USERS SET password = #{password},
   						confirmPassword = #{confirmPassword},country = #{country},
